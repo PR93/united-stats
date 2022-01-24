@@ -36,7 +36,7 @@ const Last5 = () => {
           fixedResults.map(result => 
             <div key={result.idEvent} className='flex flex-col items-center justify-center py-5 px-5 my-5 border-solid border-2'>
 
-              <h2 className='text-united-red2 font-bold text-xs'>{result.dateEvent + " " + result.strTime}</h2>
+              <h2 className='text-united-red3 font-bold text-xs'>{result.dateEvent + " " + result.strTime}</h2>
 
               <img src={result.strThumb} alt='Thumb' className='object-scale-down h-48 w-96 '></img>
 
