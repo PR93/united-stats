@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-player {
+    @apply flex flex-col justify-center items-center bg-white h-3/4 font-mono py-40 px-28;
+}
+
+img.hero-player-img {
+    @apply h-2/4 rounded mb-16 shadow;
+}
+
+.hero-player-info {
+    @apply flex flex-col justify-center;
+}
+
+h2.hero-player-h2 {
+    @apply text-2xl mb-2;
+}
