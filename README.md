@@ -10,6 +10,6 @@
 
 ### Stack
 - React
-- Tailwind
+- Tailwindcss 3.0
 - Nodejs
 - Mongodb / SQL Server
