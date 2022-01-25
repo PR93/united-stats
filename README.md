@@ -1,7 +1,15 @@
-# UnitedStats
+## UnitedStats
 
-Test React + Tailwind project!
+### Features
+- rejestrowanie i logowanie
+- dodawnie wpisu do bloga
+- API:
+ + widok ostatnich 5 meczy
+ + widok tabeli ligowej / standingu LM/LE
+ + widok z podstawowymi zawodnikami
 
-#Test
-
-#info dot. strony z tabelą
+### Stack
+- React
+- Tailwind
+- Nodejs
+- Mongodb / SQL Server
