@@ -4,9 +4,9 @@
 - rejestrowanie i logowanie
 - dodawnie wpisu do bloga
 - API:
- + widok ostatnich 5 meczy
- + widok tabeli ligowej / standingu LM/LE
- + widok z podstawowymi zawodnikami
+    - widok ostatnich 5 meczy
+    - widok tabeli ligowej / standingu LM/LE
+    - widok z podstawowymi zawodnikami
 
 ### Stack
 - React
