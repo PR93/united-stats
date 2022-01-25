@@ -4,7 +4,7 @@ import LogoSvg from '../images/manchester-united.svg'
 
 const Navbar = ({ toggle }) => {
   return (
-      <nav className='flex justify-between items-center h-24 bg-white text-united-graphite relative shadow-sm shadow-united-graphite font-mono' role='navigation'>
+      <nav className='flex justify-between items-center h-24 bg-white text-united-graphite-500 relative shadow-sm shadow-united-graphite-500 font-mono' role='navigation'>
           <Link to='/' className='pl-8 text-united-red2 font-bold'> 
             <div className='flex justify-center items-center'>
               <img src={LogoSvg} className="flex items-center h-20 cursor-pointer p-0 mr-1 ml-1" alt="Logo"/>
@@ -16,7 +16,7 @@ const Navbar = ({ toggle }) => {
            <div className='pr-8 md:block hidden'>
                <Link className='p-4' to='/'>Home</Link>
                <Link className='p-4' to='/about'>About</Link>
-               <Link className='p-4' to='/tables'>Tables</Link>
+               <Link className='p-4' to='/table'>Tables</Link>
                <Link className='p-4' to='/players'>Players</Link>
                <Link className='p-4' to='/matches'>Matches</Link>
            </div>

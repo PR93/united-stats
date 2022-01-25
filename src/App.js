@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Matches from './pages/matches';
 import Dropdown from './components/Dropdown';
+import Table from './pages/table';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,6 +38,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/matches' element={<Matches />} />
+        <Route path='/table' element={<Table />} />
       </Routes>
       <Footer />
     </>

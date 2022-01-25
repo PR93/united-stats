@@ -9,7 +9,7 @@ const Last5 = () => {
 
   useEffect(() => {
     axios.get(url).then(res => {
-      console.log(res.data.results)
+      //console.log(res.data.results)
       setResults(res.data.results)
       
     }).catch(err => {
@@ -40,9 +40,9 @@ const Last5 = () => {
 
               <img src={result.strThumb} alt='Thumb' className='object-scale-down h-48 w-96 '></img>
 
-              <h2 className='text-united-graphite font-bold text-xs'>{result.strLeague}</h2>
+              <h2 className='text-united-graphite-500 font-bold text-xs'>{result.strLeague}</h2>
 
-              <h2 className='text-united-graphite font-bold text-xs'>{result.strVenue}</h2>
+              <h2 className='text-united-graphite-500 font-bold text-xs'>{result.strVenue}</h2>
 
             <Score {...result} />
             </div>)
