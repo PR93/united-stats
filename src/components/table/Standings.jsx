@@ -147,7 +147,37 @@ standings.map(res =>{
     }
 })
 
-//console.log(standings);
+standings.map(res => {
+    if(res.position === 1)
+    {
+        const fixedRes = res["bg_color"] = "yellow-300";
+
+        return fixedRes;
+    }
+
+    if(res.position > 1 && res.position < 5)
+    {
+        const fixedRes = res["bg_color"] = "yellow-200";
+
+        return fixedRes;
+    }
+
+    if(res.position >= 5 && res.position < 18)
+    {
+        const fixedRes = res["bg_color"] = "neutral-200";
+
+        return fixedRes;
+    }
+
+    if(res.position >= 18)
+    {
+        const fixedRes = res["bg_color"] = "red-200";
+
+        return fixedRes;
+    }
+})
+
+console.log(standings);
 
   return (
   <div className='flex flex-col items-center justify-center mt-5'>
@@ -164,15 +194,15 @@ standings.map(res =>{
       {
           standings.map(standing => 
 
-            <div key={standing.position} className='flex flex-row items-center justify-start-center text-sm font-mono bg-united-graphite-100'>
-            <div className='w-14 border-r-2'>{standing.position}</div>
-            <div className='w-52 border-r-2'>{standing.team_name}</div>
-            <div className='w-10 border-r-2'>{standing.overall.games_played}</div>
-            <div className='w-10 border-r-2'>{standing.overall.won}</div>
-            <div className='w-10 border-r-2'>{standing.overall.draw}</div>
-            <div className='w-10 border-r-2'>{standing.overall.lost}</div>
-            <div className='w-14 border-r-2'>{standing.overall.goals_scored + ":" + standing.overall.goals_against}</div>
-            <div className='w-10'>{standing.points}</div>
+            <div key={standing.position} className='flex flex-row items-center justify-start-center text-sm font-mono'>
+            <div className={'w-14 border-r-2 bg-' + standing.bg_color}>{standing.position}</div>
+            <div className={'w-52 border-r-2 bg-' + standing.bg_color}>{standing.team_name}</div>
+            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.games_played}</div>
+            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.won}</div>
+            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.draw}</div>
+            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.lost}</div>
+            <div className={'w-14 border-r-2 bg-' + standing.bg_color}>{standing.overall.goals_scored + ":" + standing.overall.goals_against}</div>
+            <div className={'w-10 bg-' + standing.bg_color}>{standing.points}</div>
             </div>
           )
       }
