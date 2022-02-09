@@ -1,23 +1,39 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+/united-stats-page/node_modules
+/united-stats-page/.pnp
+united-stats-page/.pnp.js
+
+/united-stats-service/node_modules
+/united-stats-service/.pnp
+/united-stats-service/.pnp.js
 
 # testing
-/coverage
+/united-stats-page/coverage
+/united-stats-service/coverage
 
 # production
-/build
+/united-stats-page/build
+/united-stats-service/build
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+/united-stats-page/.DS_Store
+/united-stats-page/.env.local
+/united-stats-page/.env.development.local
+/united-stats-page/.env.test.local
+/united-stats-page/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+/united-stats-service/.DS_Store
+/united-stats-service/.env.local
+/united-stats-service/.env.development.local
+/united-stats-service/.env.test.local
+/united-stats-service/.env.production.local
+
+/united-stats-page/npm-debug.log*
+/united-stats-page/yarn-debug.log*
+/united-stats-page/yarn-error.log*
+
+/united-stats-service/npm-debug.log*
+/united-stats-service/yarn-debug.log*
+/united-stats-service/yarn-error.log*

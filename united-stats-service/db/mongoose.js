@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
+const config = require('./config');
 
-const url = 'mongodb://127.0.0.1:27017/united-stats';
-
-mongoose.connect(url, {
+mongoose.connect(config.database, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
