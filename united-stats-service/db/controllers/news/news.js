@@ -1,56 +1,88 @@
 const News = require('../../models/news');
 
  class NewsController  {
-    async addNews(req, res) {
-
-        //const title = req.body.title;
-        const content = req.body.content;
-        const author = req.body.author;
-
-        // const newNews = new News({
-        //     title: title,
-        //     content: content,
-        //     date: Date.now(),
-        //     author: author
-        // });
-            
-        // await newNews.save().then(() => {
-        //     res.status(200).json(newNews);
-        // });
-
-        res.send("OK");
-    }
 
     async getAllNews(req, res){
-        let doc;
+        let news;
         try{
-            doc =  await News.find({});
+            news =  await News.find({});
         } catch (err) {
             return res.status(500).json({ message: err.message });
         }
         
-        res.status(200).json(doc);
+        res.status(200).json(news);
     }
 
     async getNews(req, res){
         const id = req.params.id;
 
-        let doc;
+        let news;
         try{
-            doc =  await News.findOne({ _id: id });
+            news =  await News.findOne({ _id: id });
         } catch (err) {
             return res.status(500).json({ message: err.message });
         }
         
-        res.status(200).json(doc);
+        res.status(200).json(news);
     }
 
-    editNews(req, res){
-        res.send('OK');
+    async addNews(req, res) {
+
+        let newNews;
+
+        try {
+            newNews = new News({
+                title: req.body.title,
+                content: req.body.content,
+                author: req.body.author
+            });
+
+            await newNews.save();
+
+        } catch(err)
+        {
+            return res.status(422).json({message: err.message});
+        }
+
+        res.status(201).json(newNews);
+
     }
 
-    deleteNews(req, res){
-        res.send('OK');
+    async editNews(req, res){
+
+        let updatedNews;
+
+        try{
+            updatedNews = await News.findOne({
+                _id: req.params.id
+            });
+
+            updatedNews.title = req.body.title;
+            updatedNews.content = req.body.content;
+            updatedNews.author = req.body.author;
+            updatedNews.date = Date.now();
+
+            await updatedNews.save();
+
+        } catch(err)
+        {
+            return res.status(422).json({message: err.message});
+        }
+
+        res.status(201).json(updatedNews);
+    }
+
+    async deleteNews(req, res){
+        const id = req.params.id;
+
+        let news;
+        try{
+            news =  await News.deleteOne({ _id: id });
+        } catch (err) {
+            return res.status(500).json({ message: err.message });
+        }
+        
+        res.sendStatus(204);
     }
 }
 
