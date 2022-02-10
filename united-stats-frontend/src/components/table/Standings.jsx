@@ -147,38 +147,6 @@ standings.map(res =>{
     }
 })
 
-standings.map(res => {
-    if(res.position === 1)
-    {
-        const fixedRes = res["bg_color"] = "yellow-300";
-
-        return fixedRes;
-    }
-
-    if(res.position > 1 && res.position < 5)
-    {
-        const fixedRes = res["bg_color"] = "yellow-200";
-
-        return fixedRes;
-    }
-
-    if(res.position >= 5 && res.position < 18)
-    {
-        const fixedRes = res["bg_color"] = "neutral-200";
-
-        return fixedRes;
-    }
-
-    if(res.position >= 18)
-    {
-        const fixedRes = res["bg_color"] = "red-200";
-
-        return fixedRes;
-    }
-})
-
-console.log(standings);
-
   return (
   <div className='flex flex-col items-center justify-center mt-5'>
       <div className='flex flex-row items-center justify-start-center text-sm font-mono bg-united-graphite-200 text-white font-bold'>
@@ -192,18 +160,42 @@ console.log(standings);
           <div className='w-10'>P</div>
       </div>
       {
-          standings.map(standing => 
+          standings.map(standing => {
+                    let bgColor;
 
-            <div key={standing.position} className='flex flex-row items-center justify-start-center text-sm font-mono'>
-            <div className={'w-14 border-r-2 bg-' + standing.bg_color}>{standing.position}</div>
-            <div className={'w-52 border-r-2 bg-' + standing.bg_color}>{standing.team_name}</div>
-            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.games_played}</div>
-            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.won}</div>
-            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.draw}</div>
-            <div className={'w-10 border-r-2 bg-' + standing.bg_color}>{standing.overall.lost}</div>
-            <div className={'w-14 border-r-2 bg-' + standing.bg_color}>{standing.overall.goals_scored + ":" + standing.overall.goals_against}</div>
-            <div className={'w-10 bg-' + standing.bg_color}>{standing.points}</div>
-            </div>
+                    if(standing.position === 1)
+                    {
+                        bgColor  = "bg-green-300";
+                    }
+                
+                    if(standing.position > 1 && standing.position < 5)
+                    {
+                        bgColor  = "bg-green-200";
+                    }
+                
+                    if(standing.position >= 5 && standing.position < 18)
+                    {
+                        bgColor  = "bg-neutral-200";
+                    }
+                
+                    if(standing.position >= 18)
+                    {
+                        bgColor  = "bg-red-200";
+                    }
+
+                    return (
+                        <div key={standing.position} className='flex flex-row items-center justify-start-center text-sm font-mono'>
+                        <div className={'w-14 border-r-2 ' + bgColor}>{standing.position}</div>
+                        <div className={'w-52 border-r-2 ' + bgColor}>{standing.team_name}</div>
+                        <div className={'w-10 border-r-2 ' + bgColor}>{standing.overall.games_played}</div>
+                        <div className={'w-10 border-r-2 ' + bgColor}>{standing.overall.won}</div>
+                        <div className={'w-10 border-r-2 ' + bgColor}>{standing.overall.draw}</div>
+                        <div className={'w-10 border-r-2 ' + bgColor}>{standing.overall.lost}</div>
+                        <div className={'w-14 border-r-2 ' + bgColor}>{standing.overall.goals_scored + ":" + standing.overall.goals_against}</div>
+                        <div className={'w-10 ' + bgColor}>{standing.points}</div>
+                        </div>
+                    )
+          }
           )
       }
 

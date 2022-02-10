@@ -1,13 +1,11 @@
 import React from 'react';
-import Content from '../components/Content';
-import Hero from '../components/Hero';
+import News from '../components/news/News'
 
 
 const Home = () => {
   return (
   <>
-      <Hero />
-      <Content />
+      <News />
   </>
   );
 };
