@@ -1,34 +1,84 @@
 import React from 'react'
+import NewsContent from './content/News'
+import NewNews from './newNews/NewNews';
+import Modal from 'react-modal'; // dodatkowa biblioteka react-modal
+import EditNews from './editNews/EditNews';
 
 class News extends React.Component {
-    render(){
+    constructor(props){
+        super(props); // to jest specjalna funkcja reacta należąca do constructora
 
-        const news = [
-            {
-                id: '1',
-                title: 'Przegrana z Chelsea!',
-                content: 'Man United przegrało na wyjeździe z ChelseaFC!',
-                author: 'PR',
-                date: '02-02-2022',
-                state: 'negative'
-            },
-            {
-                id: '2',
-                title: 'Wygrana z Man City!',
-                content: 'Man United wygrało u siebie z Man City!',
-                author: 'PR',
-                date: '02-02-2022',
-                state: 'positive'
-            },
-            {
-                id: '3',
-                title: 'Nowa odsłona www!',
-                content: 'Witamy na nowym serwisie WeAreUnited! Mamy nadzieje, że nowa szata graficzna spełnia Wasze oczekiwania.',
-                author: 'PR',
-                date: '02-02-2022',
-                state: 'null'
-            }
-        ];
+        this.state = {
+            news: [
+                {
+                    id: '1',
+                    title: 'Przegrana z Chelsea!',
+                    content: 'Man United przegrało na wyjeździe z ChelseaFC!',
+                    author: 'PR',
+                    date: '02-02-2022',
+                    state: 'negative'
+                },
+                {
+                    id: '2',
+                    title: 'Wygrana z Man City!',
+                    content: 'Man United wygrało u siebie z Man City!',
+                    author: 'PR',
+                    date: '02-02-2022',
+                    state: 'positive'
+                },
+                {
+                    id: '3',
+                    title: 'Nowa odsłona www!',
+                    content: 'Witamy na nowym serwisie WeAreUnited! Mamy nadzieje, że nowa szata graficzna spełnia Wasze oczekiwania.',
+                    author: 'PR',
+                    date: '02-02-2022',
+                    state: 'null'
+                },
+                {
+                    id: '4',
+                    title: 'Kocham Pysie!',
+                    content: 'Kocham Pysie bardzo.',
+                    author: 'PR',
+                    date: '03-02-2022',
+                    state: 'null'
+                }
+            ],
+            showEditModal: false
+        }; // to jest specjalne pole, które aktualizuje tablice w czasie rzeczywistym
+
+    };
+
+    deleteNote(id){
+        const news = [...this.state.news].filter(news => news.id !== id);
+        this.setState({news: news}); // setState to tez specjalna funkcja reacta, która mowi jaka wartosc chce zmienic i odswiezyc w czasie rzeczywistym
+    };
+
+    addNews(news){
+        const newNews = [...this.state.news];
+        newNews.push(news);
+        this.setState({ news: newNews });
+    };
+
+    editNote(news){
+        const newNews = [...this.state.news];
+        const indexNews = newNews.findIndex(item => item.id == news.id);
+        if(indexNews >= 0){
+            newNews[indexNews] = news;
+            this.setState({ news: newNews });
+        }
+    };
+
+    toggleModal(){
+        this.setState({showEditModal: !this.state.showEditModal});
+    }
+
+    editNoteHandler(){
+        this.toggleModal();
+        //
+    }
+
+
+    render(){
 
         return(
         <div className='flex flex-col h-screen text-center items-center pt-10 font-mono'>
@@ -36,36 +86,20 @@ class News extends React.Component {
                 <h1 className='text-2xl text-united-graphite-500'>Aktualności:</h1>
             </div>
 
-            {news.map(news => {
+            <NewNews onAdd={(news) => this.addNews(news)} />
 
-                let borderColor
+            <Modal isOpen={this.state.showEditModal}
+                   contentLabel="Edytuj news:">
+                       <EditNews onEdit={news => this.editNote(news)} />
+                       <button className='bg-gray-500 hover:bg-gray-700 text-white font-bold text-xs py-2 px-4 mt-5 rounded'></button>
+            </Modal>
 
-                if(news.state === 'positive')
-                {
-                    borderColor = 'border-green-600'
-                }
-                else if(news.state === 'negative')
-                {
-                    borderColor = 'border-red-600'
-                }
-                else
-                {
-                    borderColor = 'border-gray-600'
-                }
-
+            {this.state.news.map(news => {
                 return(
-                <div className={'mt-10 text-left w-3/4 p-4 rounded bg-gray-200 border ' + borderColor}>
-
-                    <h2 className='font-bold text-lg'>{news.title}</h2>
-
-                    <p className='text-xs text-united-graphite-300 mb-5'>Napisany przez: {news.author}, {news.date}</p>
-
-                    <div className='mb-5'>{news.content}</div>
-
-                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold text-xs py-2 px-4 mr-3 rounded'>Edytuj</button>
-
-                    <button className='bg-red-500 hover:bg-red-700 text-white font-bold text-xs py-2 px-4 rounded'>Usuń</button>
-                </div>
+                    <NewsContent key={news.id}
+                        {...news} 
+                        onDelete={() => this.deleteNote(news.id)}
+                        onEdit={() => this.editNoteHandler(news)}/>
                 )
             })}
 

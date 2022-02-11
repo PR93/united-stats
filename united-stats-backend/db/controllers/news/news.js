@@ -34,7 +34,8 @@ const News = require('../../models/news');
             newNews = new News({
                 title: req.body.title,
                 content: req.body.content,
-                author: req.body.author
+                author: req.body.author,
+                state: req.body.state
             });
 
             await newNews.save();
@@ -61,6 +62,7 @@ const News = require('../../models/news');
             updatedNews.content = req.body.content;
             updatedNews.author = req.body.author;
             updatedNews.date = Date.now();
+            updatedNews.state = req.body.state;
 
             await updatedNews.save();
 

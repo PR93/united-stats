@@ -16,6 +16,10 @@ const NewsSchema = new mongoose.Schema({
     author:{
         type: String,
         default: 'kibic'
+    },
+    state:{
+        type: String,
+        default: 'null'
     }
 });
 
